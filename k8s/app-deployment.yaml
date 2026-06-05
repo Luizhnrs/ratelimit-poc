@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratelimiter-api
+  labels:
+    app: ratelimiter-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ratelimiter-api
+  template:
+    metadata:
+      labels:
+        app: ratelimiter-api
+    spec:
+      containers:
+        - name: ratelimiter-api
+          image: ratelimit-poc:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: ratelimiter-config
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 15

@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: ratelimit-poc
+  data:
+    redis:
+      host: ${SPRING_DATA_REDIS_HOST:localhost}
+      port: ${SPRING_DATA_REDIS_PORT:6379}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+rate-limit:
+  max-requests: ${RATE_LIMIT_MAX_REQUESTS:10}
+  window-seconds: ${RATE_LIMIT_WINDOW_SECONDS:60}

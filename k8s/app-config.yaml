@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ratelimiter-config
+data:
+  SPRING_DATA_REDIS_HOST: redis
+  SPRING_DATA_REDIS_PORT: "6379"
+  RATE_LIMIT_MAX_REQUESTS: "10"
+  RATE_LIMIT_WINDOW_SECONDS: "60"
