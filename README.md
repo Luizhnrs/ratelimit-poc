@@ -2,6 +2,8 @@
 
 POC de rate limiting distribuido para APIs Spring Boot em ambiente escalavel.
 
+![Arquitetura](docs/FluxoAplicação.png)
+
 O projeto demonstra como aplicar um limite global de requisicoes mesmo quando o trafego e distribuido entre multiplas instancias da aplicacao. O estado do rate limit fica centralizado no Redis, evitando contadores isolados por instancia.
 
 ## Sumario
